@@ -48,6 +48,20 @@ app.post('/login', function (req, res) {
   }
 })
 
+app.post('/pay', function (req, res) {
+  if (req.body.amount < 40) {
+    return res.json({
+      message: 'Payment failed',
+      reason: 'You owe more than $40'
+    })
+  }
+
+  res.json({
+    message: 'Thank you for your payment',
+    receipt: '0455678'
+  })
+})
+
 app.listen(8000, function () {
   console.log('server is running')
 })
